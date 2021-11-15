@@ -27,7 +27,7 @@ class Home(LoginRequiredMixin, ListView):
         return context
 
 class Tweet_Post(View):
-    template_name = "twitter/Create_Tweet.html"
+    template_name = "twitter/create_tweet.html"
     model = ProfileModel
     form_class = TweetForm
     initial = {
