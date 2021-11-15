@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
+import django_heroku
 import dj_database_url
 from pathlib import Path
 
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-l#mzme1z#rc0^$z63(g=boek^$+r8+y7wbe==h38gt^p8o5$iy
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['twitter_assign.herokuapp.com']
 
 
 # Application definition
@@ -86,9 +87,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'twitter_assign_5', 
-        'USER': 'postgres', 
-        'PASSWORD': 'Chirag@sharma:123',
-        'HOST': '127.0.0.1', 
+        'USER': 'sfhrfrpwexpang', 
+        'PASSWORD': '124f42bbfc8cc3ee1948af9a4a66e631c3df9b95591b401e46d2245a6deb456d',
+        'HOST': 'ec2-54-160-103-135.compute-1.amazonaws.com', 
         'PORT': '5432',
     }
 }
@@ -135,6 +136,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
+django_heroku.settings(locals())
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
