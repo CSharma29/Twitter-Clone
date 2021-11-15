@@ -10,9 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
-import django_heroku
 import dj_database_url
 from pathlib import Path
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'twitter_assingn.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'twitter_assign_5', 
+        'NAME': 'djrb1d9buikkk', 
         'USER': 'sfhrfrpwexpang', 
         'PASSWORD': '124f42bbfc8cc3ee1948af9a4a66e631c3df9b95591b401e46d2245a6deb456d',
         'HOST': 'ec2-54-160-103-135.compute-1.amazonaws.com', 
