@@ -1,11 +1,38 @@
 {%extends 'twitter/base.html'%}
 
-{%block title%}
-    Home {{current_user}}
+{%block content%}
+
+<div class="heading">
+    <h1>
+        Home
+    </h1>
+</div>
+<div class="tweet-container">
+    {%for tweet in tweets%}
+    <div id="tweet">
+        <h3>Author {{tweet.author}}</h3>
+        <p>{{tweet}}</p>
+        <div class="metadata">
+            <p id="annotation">Twitter for web</p>
+            <span style="color: white;"> {{tweet.created}}</span>
+        </div>
+        {%for tags in tweet.tags.all%}
+            <a href="{%url 'twitter:tagged' tags.slug%}">
+                <span class="tags"> #{{tags}} </span>
+            </a>
+        {%endfor%}
+    </div>
+    {%endfor%}
+</div>
 {%endblock%}
 
-{%block content%}
-    {%for tweet in tweets%}
-        {{tweet}}
-    {%endfor%}
+{%block follow%}
+{%for i in follow%}
+<div class="ui-segment">
+    <div class="user">{{i}}</div>
+    <br>
+    <a href ="{%url 'User_Profile:user_detail' i.pk%}">
+        <button class="submit-btn">See Profile</button></a>
+</div>
+{%endfor%}
 {%endblock%}

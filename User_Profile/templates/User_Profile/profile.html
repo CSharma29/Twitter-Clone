@@ -1,0 +1,35 @@
+{%extends 'twitter/base.html'%}
+
+{%block content%}
+<div class="heading">
+    <h1>
+        {{user}}
+    </h1>
+</div>
+<div class="tweet-container">
+{%for post in posts%}
+
+    <div id="tweet">
+        <h3>Author {{post.author}}</h3>
+        <p>{{post}}</p>
+        <div class="metadata">
+            <p id="annotation">Twitter for web</p>
+            <span style="color: white;"> {{post.created}}</span>
+        </div>
+    </div>
+{%endfor%}
+</div>
+{%endblock%}
+
+{%block follow%}
+{%for profile in follow%}
+<div class="ui-segment">
+    <p class="user">{{profile}}</p>
+    <a href="{%url 'User_Profile:user_detail' profile.pk%}">
+        <button class="submit-btn">See Profile</button></a>
+</div>
+
+
+{%endfor%}
+
+{%endblock%}

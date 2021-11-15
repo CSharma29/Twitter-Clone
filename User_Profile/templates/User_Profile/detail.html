@@ -1,0 +1,80 @@
+{%extends "twitter/base.html"%}
+
+{%block content%}
+
+<div class="heading">
+    <h1>
+        {{object}}
+    </h1>
+</div>
+<div>
+    {%if follow%}
+    <form action="{%url 'User_Profile:follow_unfollow_view'%}" method="POST">
+        {%csrf_token%}
+        <input type="hidden" name="profile_pk" value={{object.pk}}>
+        <button type="submit" class="unfollow submit-btn">Unfollow</button>
+    </form>
+    {%else%}
+    <button id="follow-button" class="follow submit-btn"> Follow </button>
+    {%endif%}
+</div>
+{%if follow%}
+<div class="twitter-container">
+    {%for post in Posts%}
+    <div class="profile_posts" id="tweet">
+        <h3>Author {{post.author}}</h3>
+        <p>{{post}}</p>
+        <div class="metadata">
+            <p id="annotation">Twitter for web</p>
+            <span style="color: white;"> {{post.created}}</span>
+        </div>
+    </div>
+    {%endfor%}
+</div>
+{%endif%}
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to follow</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Follow to see all posts published by {{object}}
+            </div>
+            <div class="modal-footer">
+                <form action="{%url 'User_Profile:follow_unfollow_view'%}" method="POST">
+                    {%csrf_token%}
+                    <input type="hidden" name="profile_pk" value={{object.pk}}>
+                    <button type="Submit" class="btn btn-primary">Follow</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- java Scripting the modal -->
+<script>
+    $(document).ready(function () {
+        $('#follow-button').click(function () {
+            $('#myModal').modal('show')
+        })
+    })
+</script>
+
+{%endblock%}
+
+{%block follow%}
+{%for i in following%}
+<div class="ui-segment">
+    <div class="user">{{i}}</div>
+    <br>
+    <a href="{%url 'User_Profile:user_detail' i.pk%}">
+        <button class="submit-btn">See Profile</button></a>
+</div>
+{%endfor%}
+{%endblock%}

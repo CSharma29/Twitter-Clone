@@ -15,6 +15,17 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- Linking the local stylesheets -->
     <link rel="stylesheet" href="{%static 'twitter/css/styles.css'%}">
+
+    <!-- Linking bootstrap js -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -25,32 +36,24 @@
         <a href="{%url 'twitter:home'%}">
             <i class="fa fa-home fa-2x" aria-hidden="true" id="icon"> Home</i>
         </a>
-        <a href="{%url 'twitter:explore'%}">
-            <i class="fa fa-hashtag fa-2x" aria-hidden="true" id="icon"> Explore</i>
-        </a>
-        <a href="{%url 'twitter:profile' %}">
+
+        <a href="{%url 'User_Profile:user_name' %}">
             <i class="fa fa-user fa-2x" aria-hidden="true" id="icon"> Profile</i>
         </a>
-        <button id="tweet-button"> Tweet </button>
-
+        <a href="{%url 'twitter:tweet'%}"><button id="tweet-button"> Tweet </button></a>
         <a href="{%url 'login:logout' %}"> <i class="fa fa-sign-out fa-2x" aria-hidden="true" id="icon"> Logout</i> </a>
 
     </div>
 
     <div class="center">
-
-        <div class="small-hero">{%block title%} {%endblock%}</div>
         <div class="hero">
             {%block content%} {%endblock%}
         </div>
-
     </div>
 
     <div class="right">
 
-        <div class="sub-banner">
-            {%block news%} {%endblock%}
-        </div>
+        <div class ="small-hero"> User's to Follow </div>
 
         <div class="sub-banner">
             {%block follow%} {%endblock%}

@@ -1,0 +1,18 @@
+{%extends 'twitter/base.html'%}
+
+{%load crispy_forms_tags%}
+
+{%block title%}
+Create a tweet!
+{%endblock%}
+
+{%block content%}
+<div class="create_tweet">
+    <form method="POST">
+        {%csrf_token%}
+        {{form|crispy}}
+
+        <button type="submit" id="create-post-btn">Post </button>
+    </form>
+</div>
+{%endblock%}
