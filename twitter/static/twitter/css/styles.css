@@ -1,0 +1,75 @@
+body
+{
+    display: flex;
+    flex-direction: row;
+}
+.left
+{
+    width: 25vw;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    margin-right: 0.2vw;
+}
+
+.center
+{
+    width: 45vw;
+    height: 100vh;
+    background-color: black;
+    margin-right: 0.2vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.right
+{
+    width: 30vw;
+    height: 100vh;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+#icon
+{
+    color: White;
+    display: block;
+    margin-bottom: 5vh;
+    margin-left: 5vw;
+}
+
+#tweet-button
+{
+    border: none;
+    background-color: rgb(29, 155, 240);
+    font-size: xx-large;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    width: 8vw;
+    margin-left: 5vw;
+    margin-bottom: 5vh;
+}
+
+.sub-banner
+{
+    display: block;
+    background-color: white;
+    width: 20vw;
+    height: 40vh;
+    margin-top: 10vh;
+    margin-left: 5vw;
+}
+
+.small-hero
+{
+    width: 45vw;
+    height: 5vh;
+    font-size: x-large;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
+    margin-bottom: 5vh;
+    position: absolute;
+}

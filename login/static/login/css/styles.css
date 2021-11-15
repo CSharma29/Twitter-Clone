@@ -1,0 +1,39 @@
+body {
+    display: flex;
+    flex-direction: row;
+}
+
+#left-child {
+    display: block;
+    height: 100%;
+}
+
+#right-child {
+    width: 40vw;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    background-color: rgb(17, 17, 17);
+    color: White;
+}
+
+#form-style {
+    margin-top: 5vh;
+    margin-left: 5vw;
+}
+
+#login-image {
+    width: 60vw;
+    height: 100vh;
+}
+
+#submit-button {
+    background-color: rgb(16, 144, 218);
+    color: white;
+    border-radius: 20px;
+    margin-top: 15px
+}
+
+#scribble {
+    margin-top: 10px;
+}

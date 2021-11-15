@@ -1,0 +1,25 @@
+{%extends 'login/base.html'%}
+{%load crispy_forms_tags%}
+{%block content%}
+
+<div class="register-parent">
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <fieldset>
+            <legend class="register-heading"> Join Us Today! </legend>
+            {{form|crispy}}
+        </fieldset>
+
+        <div id="submit-parent">
+            <button type="submit" id="submit-button"> Signup! </button>
+        </div>
+    </form>
+</div>
+<div id="login">
+    <span> Already have an account </span>
+    <a class="link" href="{%url 'login:login'%}"> Signin </a>
+</div>
+
+{%endblock%}

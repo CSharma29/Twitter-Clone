@@ -1,0 +1,60 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="english">
+
+<head>
+
+    <!-- Loading the meta view port -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <!-- Linking the bootstrap stylesheet -->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Linking the local stylesheets -->
+    <link rel="stylesheet" href="{%static 'twitter/css/styles.css'%}">
+</head>
+
+<body>
+    <div class="left">
+        <div style="margin-top: 10vh;"></div>
+        <!-- The Twitter Icon -->
+        <i class="fa fa-twitter fa-3x" aria-hidden="true" id="icon"></i>
+        <a href="{%url 'twitter:home'%}">
+            <i class="fa fa-home fa-2x" aria-hidden="true" id="icon"> Home</i>
+        </a>
+        <a href="{%url 'twitter:explore'%}">
+            <i class="fa fa-hashtag fa-2x" aria-hidden="true" id="icon"> Explore</i>
+        </a>
+        <a href="{%url 'twitter:profile' %}">
+            <i class="fa fa-user fa-2x" aria-hidden="true" id="icon"> Profile</i>
+        </a>
+        <button id="tweet-button"> Tweet </button>
+
+        <a href="{%url 'login:logout' %}"> <i class="fa fa-sign-out fa-2x" aria-hidden="true" id="icon"> Logout</i> </a>
+
+    </div>
+
+    <div class="center">
+
+        <div class="small-hero">{%block title%} {%endblock%}</div>
+        <div class="hero">
+            {%block content%} {%endblock%}
+        </div>
+
+    </div>
+
+    <div class="right">
+
+        <div class="sub-banner">
+            {%block news%} {%endblock%}
+        </div>
+
+        <div class="sub-banner">
+            {%block follow%} {%endblock%}
+        </div>
+
+    </div>
+</body>

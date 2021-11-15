@@ -1,0 +1,11 @@
+{%extends 'twitter/base.html'%}
+
+{%block title%}
+    Home {{current_user}}
+{%endblock%}
+
+{%block content%}
+    {%for tweet in tweets%}
+        {{tweet}}
+    {%endfor%}
+{%endblock%}
