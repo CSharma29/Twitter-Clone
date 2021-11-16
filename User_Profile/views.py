@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.views.generic import ListView, DetailView
 from . models import Profile as ProfileModel
@@ -17,7 +18,7 @@ class Profile(LoginRequiredMixin, ListView):
         context['posts'] = Post.objects.filter(author = self.request.user.profile)
         return context
 
-class User_DetailView(DetailView):
+class User_DetailView(LoginRequiredMixin, DetailView):
     model = ProfileModel
     template_name = 'User_Profile/detail.html'
 
@@ -36,9 +37,9 @@ class User_DetailView(DetailView):
             follow = False
         context["follow"] = follow
         context["following"] = ProfileModel.objects.all().exclude(user=self.request.user)
-        context["Posts"] = Post.objects.all().filter(author = self.request.user.profile)
         return context
 
+@login_required
 def follow_unfollow(request):
     if request.method == "POST":
         my_profile = ProfileModel.objects.get(user=request.user)

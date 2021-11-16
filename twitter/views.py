@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect,get_object_or_404
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 from taggit.models import Tag
+from itertools import chain
 
 
 # Create your views here.
@@ -23,11 +24,26 @@ class Home(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(Home, self).get_context_data(**kwargs)
         context['follow'] = ProfileModel.objects.all().exclude(user=self.request.user)
-        context['posts'] = Post.objects.all()
+        profile = ProfileModel.objects.get(user = self.request.user)
+        users = [user for user in profile.following.all()]
+        # get the posts of users we're following
+        posts = []
+        qs = None
+        for u in users:
+            p = ProfileModel.objects.get(user=u)
+            p_posts = p.post_set.all()
+            posts.append(p_posts)
+        my_posts = profile.profiles_posts()
+        posts.append(my_posts)
+
+        if posts:
+            qs = sorted(chain(*posts), reverse=True, key=lambda obj: obj.created)
+        context['posts'] = qs
         return context
 
-class Tweet_Post(View):
-    template_name = "twitter/Create_Tweet.html"
+
+class Tweet_Post(LoginRequiredMixin,View):
+    template_name = "twitter/create_tweet.html"
     model = ProfileModel
     form_class = TweetForm
     initial = {
@@ -48,13 +64,3 @@ class Tweet_Post(View):
             return redirect('twitter:home')
         return render(request, self.template_name, {'form':form})
 
-def tagged(request, slug):
-    tag = get_object_or_404(Tag, slug=slug)
-    common_tags = Post.tags.most_common()[:4]
-    posts = Post.objects.filter(tags=tag)
-    context = {
-        'tag': tag,
-        'common_tags': common_tags,
-        'posts': posts,
-    }
-    return render(request, 'twitter/home.html', context)

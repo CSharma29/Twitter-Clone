@@ -153,8 +153,7 @@ a.active
 }
 
 .hero {
-    width: 100%;
-    height: 100%;
+    height: 80vh;
     overflow: hidden;
     padding: 0px 4px;
     padding-top: 10px;
@@ -231,6 +230,7 @@ a.active
 #tweet .metadata {
     display: grid;
     grid-auto-flow: column;
+    grid-column-gap: 7vw;
 }
 
 .metadata p {
