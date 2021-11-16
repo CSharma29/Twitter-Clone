@@ -83,6 +83,7 @@ WSGI_APPLICATION = 'twitter_assingn.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# AWS DB USE IN DEPLOYMent
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -93,6 +94,18 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+"""DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'twitter_assign_5', 
+        'USER': 'postgres', 
+        'PASSWORD': 'Chirag@sharma:123',
+        'HOST': '127.0.0.1', 
+        'PORT': '5432',
+    }
+}"""
+
 
 
 # Password validation
