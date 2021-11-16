@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'twitter_assingn.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 # AWS DB USE IN DEPLOYMent
-DATABASES = {
+"""DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'djrb1d9buikkk', 
@@ -93,9 +93,9 @@ DATABASES = {
         'HOST': 'ec2-54-160-103-135.compute-1.amazonaws.com', 
         'PORT': '5432',
     }
-}
+}"""
 
-"""DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'twitter_assign_5', 
@@ -104,7 +104,7 @@ DATABASES = {
         'HOST': '127.0.0.1', 
         'PORT': '5432',
     }
-}"""
+}
 
 
 

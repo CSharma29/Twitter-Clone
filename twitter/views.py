@@ -42,7 +42,7 @@ class Home(LoginRequiredMixin, ListView):
         return context
 
 
-class Tweet_Post(View):
+class Tweet_Post(LoginRequiredMixin,View):
     template_name = "twitter/create_tweet.html"
     model = ProfileModel
     form_class = TweetForm
@@ -64,13 +64,3 @@ class Tweet_Post(View):
             return redirect('twitter:home')
         return render(request, self.template_name, {'form':form})
 
-def tagged(request, slug):
-    tag = get_object_or_404(Tag, slug=slug)
-    common_tags = Post.tags.most_common()[:4]
-    posts = Post.objects.filter(tags=tag)
-    context = {
-        'tag': tag,
-        'common_tags': common_tags,
-        'posts': posts,
-    }
-    return render(request, 'twitter/home.html', context)
