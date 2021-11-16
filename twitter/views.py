@@ -74,6 +74,3 @@ def tagged(request, slug):
         'posts': posts,
     }
     return render(request, 'twitter/home.html', context)
-
-def post_of_following(request):
-    profile = Profile
