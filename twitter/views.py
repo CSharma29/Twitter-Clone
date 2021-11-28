@@ -3,9 +3,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post
 from .forms import TweetForm
 from User_Profile.models import Profile as ProfileModel
-from django.shortcuts import render, redirect,get_object_or_404
+from django.shortcuts import render, redirect
 from django.template.defaultfilters import slugify
-from django.contrib.auth.models import User
 from taggit.models import Tag
 from itertools import chain
 
@@ -23,8 +22,9 @@ class Home(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(Home, self).get_context_data(**kwargs)
-        context['follow'] = ProfileModel.objects.all().exclude(user=self.request.user)
-        profile = ProfileModel.objects.get(user = self.request.user)
+        context['follow'] = ProfileModel.objects.all().exclude(
+            user=self.request.user)
+        profile = ProfileModel.objects.get(user=self.request.user)
         users = [user for user in profile.following.all()]
         # get the posts of users we're following
         posts = []
@@ -37,21 +37,25 @@ class Home(LoginRequiredMixin, ListView):
         posts.append(my_posts)
 
         if posts:
-            qs = sorted(chain(*posts), reverse=True, key=lambda obj: obj.created)
+            # chain is going to take a group of iterables and will return you one iterable
+            qs = sorted(chain(*posts), reverse=True,
+                        key=lambda obj: obj.created)
         context['posts'] = qs
         return context
 
 
-class Tweet_Post(LoginRequiredMixin,View):
+class Tweet_Post(LoginRequiredMixin, View):
     template_name = "twitter/create_tweet.html"
     model = ProfileModel
     form_class = TweetForm
     initial = {
         'content': 'World! is at your feet',
     }
+
     def get(self, request):
-        form = self.form_class(initial = self.initial)
+        form = self.form_class(initial=self.initial)
         return render(request, self.template_name, {'form': form})
+
     def post(self, request):
 
         form = self.form_class(request.POST)
@@ -62,5 +66,4 @@ class Tweet_Post(LoginRequiredMixin,View):
             newpost.save()
             form.save_m2m()
             return redirect('twitter:home')
-        return render(request, self.template_name, {'form':form})
-
+        return render(request, self.template_name, {'form': form})
